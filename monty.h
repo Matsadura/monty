@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <strings.h>
+#include <string.h>
 #include <limits.h>
 #include <fcntl.h>
 #include <unistd.h>
@@ -41,4 +41,18 @@ typedef struct instruction_s
 } instruction_t;
 
 
+
+
+typedef struct inst_s
+{
+        char *op;
+        void (*f)(char *word, char *word2);
+} inst_t;
+
+void _push(char *s, char *s2);
+void _pall(char *s, char *s2);
+
+char *read_textfile(const char *filename, size_t letters);
+void _parser(char *content, char **table);
+void tokeniz(char **toks, char *L, char *d);
 #endif /* MONTY */
