@@ -1,11 +1,15 @@
 #include "monty.h"
 
-void free_grid(char **grid)
-{
-	int i = 0;
 
-	for (i = 0; grid[i] ; i++)
+void free_grid(char *lines[][3])
+{
+	int i, j;
+
+	for (i = 0; lines[i][0] ; i++)
 	{
-		free(grid[i]);
+		for (j = 0; lines[i][j]; j++)
+		{
+			free(lines[i][j]);
+		}
 	}
 }

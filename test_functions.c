@@ -1,4 +1,5 @@
 #include "monty.h"
+char *lines[MAX_LINES][MAX_TOKS];
 
 void _push(char *s, char *s2)
 {
@@ -12,7 +13,7 @@ void _pall(char *s, char *s2)
 
 
 
-void _parser(char *content, char **table)
+/*void _parser(char *content, char **table)
 {
 	char *lines[1024];
 	int i;
@@ -23,7 +24,7 @@ void _parser(char *content, char **table)
 		tokeniz(table, lines[i], " ");
 	}
 
-}
+}*/
 
 void tokeniz(char **toks, char *L, char *d)
 {
@@ -31,12 +32,11 @@ void tokeniz(char **toks, char *L, char *d)
 	int i;
 
 	tmp = strtok(L, d);
-	for (i = 0; tmp; i++)
+	for (i = 0; tmp && i < 2; i++)
 	{
 		toks[i] = strdup(tmp);
 		tmp = strtok(NULL, d);
 	}
-	
 
 	toks[i] = NULL;
 }
@@ -56,21 +56,28 @@ int if_comment(char *line)
 	return (0);	/* if not */
 }
 
-void cmd_list(char **buf, char *input, char *delim)
+void cmd_list(char *input)
 {
+	char *buf[MAX_LINES];
 	char *tmp;
 	int i = 0;
 
-	tmp = strtok(input, delim);
-	/* for (i = 0; tmp; i++) */ 
+	tmp = strtok(input, NEW_LINE);
 	while (tmp)
 	{
-		if (if_comment(tmp) == 0) /* check if the token is a comment*/
-			buf[i++] = _liner(tmp); /* if the token is not comment _liner*/
-		tmp = strtok(NULL, delim);
+		buf[i++] = _liner(tmp);
+		tmp = strtok(NULL, NEW_LINE);
 	}
 
 	buf[i] = NULL;
+
+	for (i = 0; buf[i]; i++)
+	{
+		tokeniz(lines[i], buf[i], SPACE);
+		free(buf[i]);
+	}
+	lines[i][0] = NULL;
+
 }
 
 /**

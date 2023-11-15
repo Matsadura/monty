@@ -1,5 +1,7 @@
 #include "monty.h"
 
+char *lines[MAX_LINES][MAX_TOKS];
+
 /*int main(int argc, char **argv)
 {
 	char *table[1024];
@@ -29,8 +31,8 @@
 int main(int argc, char **argv)
 {
 	char *input;
-	char *lines[1024];
-	char *cmd[1024];
+	/*char *lines[1024];*/
+	/*char *cmd[1024];*/
 	int i, j, line_number = 0;
 
 	inst_t data[] = {
@@ -43,23 +45,25 @@ int main(int argc, char **argv)
 			printf("argc err\n");
 			exit(1);
 		}
+	/* i forgot why i said the next line */
 	/* at some point check if alwase the line ends with \n*/
 
 	/* tokenize the input and clean it */
 	input = read_textfile(argv[1], 1024); /* i put this here cuz it needs to be freed */
-	cmd_list(lines, input, "\n");
+	cmd_list(input);
 
-	for (i = 0; lines[i]; i++)
+	for (i = 0; lines[i][0]; i++)
 	{
-		/* tokenize one line per loop*/
-		tokeniz(cmd, lines[i], " ");
 	    line_number++;
+		if (lines[i][0][0] == '#')
+			continue;
+
+		printf("[%d] <==> ", line_number);
 		for (j = 0; j < 2; j++)
 		{
-			if (strcmp(cmd[0], data[j].op) == 0)
-				data[j].f(data[j].op, cmd[1]);
+			if (strcmp(lines[i][0], data[j].op) == 0)
+				data[j].f(data[j].op, lines[i][1]);
 		}
-		free_grid(cmd);
 	}
 
 	free_grid(lines);

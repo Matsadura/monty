@@ -8,6 +8,14 @@
 #include <fcntl.h>
 #include <unistd.h>
 
+/* list of marcos */
+
+#define MAX_LINES 1024
+#define MAX_TOKS 3
+#define NEW_LINE "\n"
+#define SPACE " "
+
+extern char *lines[MAX_LINES][MAX_TOKS];
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -56,7 +64,7 @@ char *read_textfile(const char *filename, size_t letters);
 void _parser(char *content, char **table);
 void tokeniz(char **toks, char *L, char *d);
 char *_liner(char *str);
-void cmd_list(char **buf, char *input, char *delim);
+void cmd_list(char *input);
 
-void free_grid(char **grid);
+void free_grid(char *grid[][3]);
 #endif /* MONTY */
