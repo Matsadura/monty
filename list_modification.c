@@ -11,10 +11,8 @@ stack_t *create_node(char *str)
 
 	new_node = malloc(sizeof(stack_t));
 	if (new_node == NULL)
-	{
-		fprintf(stderr, "Error: malloc failed\n");
-		exit(EXIT_FAILURE);
-	}
+		return (NULL);
+
 	new_node->n = atoi(str);
 	new_node->next = NULL;
 	new_node->prev = NULL;

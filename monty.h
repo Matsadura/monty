@@ -16,6 +16,7 @@
 #define MAX_TOKS 3 /* cuz we only need two token and the 3 tok is a NULL*/
 #define NEW_LINE "\n"
 #define SPACE " "
+#define INSTRCT_EXIST 10 /* instruction does not exist */
 
 
 /**
@@ -62,6 +63,7 @@ void tokeniz(char **toks, char *L, char *d);
 char *_liner(char *str);
 void cmd_list(char *input, char *lines[][3]);
 int is_comment(char *line);
+int is_num(char *Str);
 
 
 /*** list modification ***/
@@ -74,5 +76,8 @@ void free_dlistint(stack_t *head);
 void _launcher(char *lines[][3]);
 void free_grid(char *grid[][3]);
 int isInteger(char *val);
+
+void exit_err(int flag, char *lines[][3], unsigned int L, char *cmd);
+int func(instruction_t data, char **toks, unsigned int line_number);
 
 #endif /* MONTY */
