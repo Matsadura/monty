@@ -55,4 +55,8 @@ void _pall(char *s, char *s2);
 char *read_textfile(const char *filename, size_t letters);
 void _parser(char *content, char **table);
 void tokeniz(char **toks, char *L, char *d);
+char *_liner(char *str);
+void cmd_list(char **buf, char *input, char *delim);
+
+void free_grid(char **grid);
 #endif /* MONTY */

@@ -36,6 +36,71 @@ void tokeniz(char **toks, char *L, char *d)
 		toks[i] = strdup(tmp);
 		tmp = strtok(NULL, d);
 	}
+	
 
 	toks[i] = NULL;
+}
+
+int if_comment(char *line)
+{
+	int i = 0;
+	
+	/* ignore white spaces*/
+	while (line[i] == ' ')
+		i++;
+
+	/* check for comment*/
+	if (line[i] == '#')
+		return (1); /* if the line is a comment*/
+
+	return (0);	/* if not */
+}
+
+void cmd_list(char **buf, char *input, char *delim)
+{
+	char *tmp;
+	int i = 0;
+
+	tmp = strtok(input, delim);
+	/* for (i = 0; tmp; i++) */ 
+	while (tmp)
+	{
+		if (if_comment(tmp) == 0) /* check if the token is a comment*/
+			buf[i++] = _liner(tmp); /* if the token is not comment _liner*/
+		tmp = strtok(NULL, delim);
+	}
+
+	buf[i] = NULL;
+}
+
+/**
+ * _liner - removes whitespaces
+ * @str: the str to handle
+ * Return: the clean str
+ */
+
+char *_liner(char *str)
+{
+	char BUF[1024];
+	int i = 0, k = 0;
+
+	if (str != NULL)
+	{
+		while (str[i] == ' ')
+			i++;
+
+		for (; str[i]; i++)
+		{
+			if (str[i] != ' ')
+				BUF[k++] = str[i];
+			else if (str[i] == ' ' && str[i - 1] != ' ')
+				BUF[k++] = str[i];
+		}
+	}
+	if (BUF[k - 1] == ' ')
+		BUF[k - 1] = '\0';
+	else
+		BUF[k] = '\0';
+
+	return (strdup(BUF));
 }

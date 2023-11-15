@@ -11,7 +11,7 @@
 
 char *read_textfile(const char *filename, size_t letters)
 {
-	int fd, count = 0, readed = -1;
+	int fd, readed = -1;
 	char *buff;
 
 	if (filename == NULL)

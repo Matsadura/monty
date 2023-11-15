@@ -28,7 +28,9 @@
 
 int main(int argc, char **argv)
 {
-	char *table[1024];
+	char *input;
+	char *lines[1024];
+	char *cmd[1024];
 	int i, j, line_number = 0;
 
 	inst_t data[] = {
@@ -36,17 +38,32 @@ int main(int argc, char **argv)
 		{"pall", _pall},
 	};
 
-	_parser(read_textfile(argv[1], 1024), table);
+	if (argc < 2 || argc > 2)
+		{
+			printf("argc err\n");
+			exit(1);
+		}
+	/* at some point check if alwase the line ends with \n*/
 
-	for (i = 0; table[i]; i++)
+	/* tokenize the input and clean it */
+	input = read_textfile(argv[1], 1024); /* i put this here cuz it needs to be freed */
+	cmd_list(lines, input, "\n");
+
+	for (i = 0; lines[i]; i++)
 	{
+		/* tokenize one line per loop*/
+		tokeniz(cmd, lines[i], " ");
 	    line_number++;
 		for (j = 0; j < 2; j++)
 		{
-			if (strcmp(table[i], data[j].op) == 0)
-				data[j].f(data[j].op, table[i]);
+			if (strcmp(cmd[0], data[j].op) == 0)
+				data[j].f(data[j].op, cmd[1]);
 		}
+		free_grid(cmd);
 	}
+
+	free_grid(lines);
+	free(input);
 
 	return (0);
 }
