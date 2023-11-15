@@ -15,20 +15,27 @@ char *read_textfile(const char *filename, size_t letters)
 	char *buff;
 
 	if (filename == NULL)
-		return (0);
+		/** fprint error */
+		exit(EXIT_FAILURE); /*exit failure*/
 
 	fd = open(filename, O_RDONLY);
-	if (fd == -1)
-		return (0);
+	if (fd == -1) /** fprint error */
+	{
+		fprintf(stderr, "Error: Can't open file %s\n", filename);
+		exit(EXIT_FAILURE); /*exit failure*/
+	}
 
 	buff = malloc(letters);
 	if (buff == NULL)
-		return (0);
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
 	readed = read(fd, buff, letters);
+
 	if (readed == -1)
 		return (0);
 	buff[readed] = '\0';
-	/*count += readed;*/
 
 	close(fd);
 	return (buff);

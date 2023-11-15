@@ -2,6 +2,13 @@
 
 stack_t *head = NULL;
 
+/**
+ * main - an interpreter for the Monty bytecode
+ * @argc: number of arguments
+ * @argv: the arguments
+ * Return: EXIT_SUCCESS or Failure
+ */
+
 int main(int argc, char **argv)
 {
 	char *input;
@@ -9,8 +16,8 @@ int main(int argc, char **argv)
 
 	if (argc < 2 || argc > 2)
 	{
-		printf("argc err\n");
-		exit(1);
+		fprintf(stderr, "USAGE: monty file\n");
+		exit(EXIT_FAILURE);
 	}
 
 	/* i put this here cuz it needs to be freed "cmd_list" */

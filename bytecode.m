@@ -1,5 +1,5 @@
                                                                                                        push                               1                           
-             push               2            
+             pussh                           
 push 3
 # this is a comment
 pall

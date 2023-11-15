@@ -2,7 +2,10 @@
 
 
 /**
- * 
+ * tokeniz - tokenizes an input
+ * @toks: the buffer where the result is stored
+ * @L: the line to tokenize
+ * @d: the delimiter
  */
 void tokeniz(char **toks, char *L, char *d)
 {
@@ -20,7 +23,10 @@ void tokeniz(char **toks, char *L, char *d)
 }
 
 /**
- * 
+ * is_comment - checks if the instuction is a
+ *	comment
+ * @line: the parsed line
+ * Return: 1 if it's a comment, 0 otherwise
  */
 int is_comment(char *line)
 {
@@ -32,8 +38,10 @@ int is_comment(char *line)
 }
 
 /**
- *
- *
+ * cmd_list - parses the input into a list
+ *	of commands
+ * @input: the input to parse
+ * @lines: the buffer to where to store the rslt
  */
 void cmd_list(char *input, char *lines[][3])
 {
@@ -50,8 +58,8 @@ void cmd_list(char *input, char *lines[][3])
 	}
 	buf[i] = NULL;
 
-	/* in this step the parsed line will parsed to tokens
-		and we'll stor them in *lines[][3] */
+	/* in this step the parsed line will parsed to tokens */
+	/*  and we'll stor them in *lines[][3] */
 	for (i = 0; buf[i]; i++)
 	{
 		tokeniz(lines[i], buf[i], SPACE);

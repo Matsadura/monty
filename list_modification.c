@@ -1,5 +1,10 @@
 #include "monty.h"
 
+/**
+ * create_node - creates a node
+ * @str: the value of n
+ * Return: the new node
+ */
 stack_t *create_node(char *str)
 {
 	stack_t *new_node;
@@ -7,7 +12,7 @@ stack_t *create_node(char *str)
 	new_node = malloc(sizeof(stack_t));
 	if (new_node == NULL)
 	{
-		printf("New_node malloc error\n");
+		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 	new_node->n = atoi(str);
@@ -21,7 +26,7 @@ stack_t *create_node(char *str)
 /**
  * add_dnodeint - adds a new node at the
  *	beginning of a doubly linked list
- * @head: the head of the list
+ * @stack: the head of the list
  * @n: the value of the node
  * Return: the address of the new element
  *	or NULL if it failed
@@ -36,7 +41,10 @@ stack_t *add_dnodeint(stack_t **stack, int n)
 	if (new_node == NULL)
 		return (NULL);
 
-	new_node->n = n; /** n is the value of the new node that was passed as an argument **/
+	new_node->n = n; /** n is the value of
+			  *the new node that was passed
+			  * as an argument
+			  */
 
 	new_node->prev = NULL;
 	new_node->next = *stack;
@@ -70,7 +78,7 @@ size_t print_dlistint(const stack_t *h)
 
 	if (len == 0)
 		printf("list is empty\n");
-	
+
 	return (len);
 }
 

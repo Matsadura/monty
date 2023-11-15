@@ -1,10 +1,13 @@
 #include "monty.h"
 
+/**
+ * _launcher - executes the OPcode
+ * @lines: the parser instructions
+ */
 void _launcher(char *lines[][3])
 {
 	int i, j;
 	unsigned int line_number = 0;
-
 	stack_t *new_node;
 	instruction_t data[] = {
 		{"push", _push},
@@ -16,7 +19,6 @@ void _launcher(char *lines[][3])
 		line_number++;
 		if (is_comment(lines[i][0]))
 			continue;
-
 		/*printf("[%d][%s] <==> ", line_number, lines[i][0]);*/
 		for (j = 0; j < 2; j++)
 		{
@@ -30,7 +32,16 @@ void _launcher(char *lines[][3])
 				}
 				else
 					data[j].f(&head, line_number);
+				break;
 			}
+		}
+		if (j == 2)
+		{
+			fprintf(stderr, "L%d: unknown instruction %s\n", line_number, lines[i][0]);
+			/**possible free_list*/
+			free_dlistint(head);
+			free_grid(lines);
+			exit(EXIT_FAILURE);
 		}
 	}
 }
