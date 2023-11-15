@@ -40,9 +40,9 @@ void _pint(stack_t **stack, unsigned int line_number)
 void _pop(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp;
+
 	(void) stack; /**stack is not used in this function **/
 	(void) line_number;
-
 	tmp = head;
 	head = head->next;
 	free(tmp);
@@ -51,6 +51,8 @@ void _pop(stack_t **stack, unsigned int line_number)
 void _swap(stack_t **stack, unsigned int line_number)
 {
 	int tmp = head->n;
+	(void) stack; /**stack is not used in this function **/
+	(void) line_number;
 
 	head->n = (head->next)->n;
 	(head->next)->n = tmp;
