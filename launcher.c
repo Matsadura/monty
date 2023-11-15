@@ -8,7 +8,6 @@ void _launcher(char *lines[][3])
 {
 	int i, j, ret;
 	unsigned int line_number = 0;
-	stack_t *new_node;
 	instruction_t data[] = {
 		{"push", _push},
 		{"pall", _pall}
