@@ -76,9 +76,6 @@ size_t print_dlistint(const stack_t *h)
 		len++;
 	}
 
-	if (len == 0)
-		printf("list is empty\n");
-
 	return (len);
 }
 
