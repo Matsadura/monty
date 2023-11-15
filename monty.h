@@ -11,8 +11,8 @@
 
 /* list of marcos */
 
-#define MAX_BUF 1024
-#define MAX_LINES 1024
+#define MAX_BUF 32768
+#define MAX_LINES 32768
 #define MAX_TOKS 3 /* cuz we only need two token and the 3 tok is a NULL*/
 #define NEW_LINE "\n"
 #define SPACE " "
@@ -57,6 +57,10 @@ void _pall(stack_t **stack, unsigned int line_number);
 void _pint(stack_t **stack, unsigned int line_number);
 void _pop(stack_t **stack, unsigned int line_number);
 void _swap(stack_t **stack, unsigned int line_number);
+void _add(stack_t **stack, unsigned int line_number);
+void _sub(stack_t **stack, unsigned int line_number);
+void _div(stack_t **stack, unsigned int line_number);
+void _mul(stack_t **stack, unsigned int line_number);
 
 /** file I / O */
 char *read_textfile(const char *filename, size_t letters);

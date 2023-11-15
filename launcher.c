@@ -13,16 +13,23 @@ void _launcher(char *lines[][3])
 		{"pall", _pall},
 		{"pint", _pint},
 		{"pop", _pop},
-		{"swap", _swap}
+		{"swap", _swap},
+		{"add", _add},
+		{"sub", _sub},
+		{"div", _div},
+		{"mul", _mul}
 	};
 
 	for (i = 0; lines[i][0]; i++)
 	{
 		line_number++;
-		if (is_comment(lines[i][0]) || lines[i][0][0] == '\0')
+		if (is_comment(lines[i][0]) || !lines[i][0][0])
 			continue;
-
-		for (j = 0; j < 5; j++)
+		
+		if (strcmp(lines[i][0], "nop") == 0)
+			continue;
+			
+		for (j = 0; j < 9; j++)
 		{
 			if (strcmp(lines[i][0], data[j].opcode) == 0)
 			{
@@ -32,7 +39,7 @@ void _launcher(char *lines[][3])
 				break;
 			}
 		}
-		if (j == 5)
+		if (j == 9)
 		{
 			exit_err(INSTRCT_EXIST, lines, line_number, lines[i][0]);
 		}
@@ -75,30 +82,48 @@ int is_num(char *Str)
 
 int func(instruction_t data, char **toks, unsigned int line_number)
 {
-	char *PUSH = "push", *PINT = "pint", *POP = "pop", *SWAP = "swap";
 	stack_t *new_node;
 
-	if (strcmp(data.opcode, PUSH) == 0)
+	if (strcmp(data.opcode, "push") == 0)
 	{
 		if (is_num(toks[1]))
 			new_node = create_node(toks[1]);
 		else
 			return (1);
-
 		if (new_node == NULL)
 			return (11);
 	}
-
-	else if (strcmp(data.opcode, PINT) == 0 && head == NULL)
+	else if (strcmp(data.opcode, "pint") == 0 && head == NULL)
 			return (3);
-
-	else if (strcmp(data.opcode, POP) == 0 && head == NULL)
+	else if (strcmp(data.opcode, "pop") == 0 && head == NULL)
 			return (4);
-
-	else if (strcmp(data.opcode, SWAP) == 0)
+	else if (strcmp(data.opcode, "swap") == 0)
+	{
 		if (head == NULL || head->next == NULL)
 			return (5);
-
+	}
+	else if (strcmp(data.opcode, "add") == 0)
+	{
+		if (head == NULL || head->next == NULL)
+			return (6);
+	}
+	else if (strcmp(data.opcode, "sub") == 0)
+	{
+		if (head == NULL || head->next == NULL)
+			return (7);
+	}
+	else if (strcmp(data.opcode, "div") == 0)
+	{
+		if (head == NULL || head->next == NULL)
+			return (81);
+		else if (head->n == 0)
+			return (82);
+	}
+	else if (strcmp(data.opcode, "mul") == 0)
+	{
+		if (head == NULL || head->next == NULL)
+			return (9);
+	}
 
 	data.f(&new_node, line_number);
 
