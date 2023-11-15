@@ -16,6 +16,8 @@
 #define NEW_LINE "\n"
 #define SPACE " "
 
+/* 3D array for the commands*/
+extern char *lines[MAX_LINES][MAX_TOKS];
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -28,12 +30,11 @@
  */
 typedef struct stack_s
 {
-        int n;
-        struct stack_s *prev;
-        struct stack_s *next;
+	int n;
+	struct stack_s *prev;
+	struct stack_s *next;
 } stack_t;
 
-extern stack_t *head; /** the head of the stack or queue as a global variable*/
 
 /**
  * struct instruction_s - opcode and its function
@@ -45,32 +46,29 @@ extern stack_t *head; /** the head of the stack or queue as a global variable*/
  */
 typedef struct instruction_s
 {
-        char *opcode;
-        void (*f)(stack_t **stack, unsigned int line_number);
+	char *opcode;
+	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-/*** op codes ***/
-void _push(stack_t **stack, unsigned int line_number);
-void _pall(stack_t **stack, unsigned int line_number);
 
-/** file I / O */
+
+
+typedef struct inst_s
+{
+	char *op;
+	void (*f)(char *word, char *word2);
+} inst_t;
+
+void _launcher(void);
+
+void _push(char *s, char *s2);
+void _pall(char *s, char *s2);
+
 char *read_textfile(const char *filename, size_t letters);
-
-/*** parser ***/
 void tokeniz(char **toks, char *L, char *d);
 char *_liner(char *str);
-void cmd_list(char *input, char *lines[][3]);
+void cmd_list(char *input);
 int is_comment(char *line);
 
-
-/*** list modification ***/
-size_t print_dlistint(const stack_t *h);
-stack_t *add_dnodeint(stack_t **stack, int n);
-stack_t *create_node(char *str);
-void free_dlistint(stack_t *head);
-
-/*** miscellaneous ***/
-void _launcher(char *lines[][3]);
 void free_grid(char *grid[][3]);
-
 #endif /* MONTY */

@@ -1,30 +1,6 @@
 #include "monty.h"
 
-/*int main(int argc, char **argv)
-{
-	char *table[1024];
-	int i;
-
-	inst_t data[] = {
-		{"push", _push},
-		{"pall", _pall},
-	};
-
-	_parser(read_file(argv[1], 1024), table);
-
-
-	for (i = 0; table[line_number]; line_number++ )
-	{
-		for (i = 0; i < 2; i++)
-		{
-			if (strcmp(content, data[i].op) == 0)
-				data[i].f(data[i].op);
-		}
-	}
-
-	free(content);
-	return (0);
-}*/
+stack_t *head = NULL;
 
 int main(int argc, char **argv)
 {
@@ -47,5 +23,6 @@ int main(int argc, char **argv)
 	_launcher(lines);
 
 	free_grid(lines);
+	free_dlistint(head);
 	return (0);
 }

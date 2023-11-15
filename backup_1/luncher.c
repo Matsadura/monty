@@ -1,17 +1,17 @@
 #include "monty.h"
 
-void _launcher(char *lines[][3])
+void _launcher(void)
 {
-    int i, j, line_number = 0;
+	int i, j, line_number = 0;
 
-    inst_t data[] = {
+	inst_t data[] = {
 		{"push", _push},
 		{"pall", _pall},
 	};
 
-    for (i = 0; lines[i][0]; i++)
+	for (i = 0; lines[i][0]; i++)
 	{
-	    line_number++;
+		line_number++;
 		if (is_comment(lines[i][0]))
 			continue;
 

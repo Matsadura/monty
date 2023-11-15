@@ -1,30 +1,9 @@
 #include "monty.h"
 
-void _push(char *s, char *s2)
-{
-	printf("OPcode :%s, argument : %s\n", s, s2);
-}
 
-void _pall(char *s, char *s2)
-{
-	printf("OPcode :%s, argument : %s\n", s, s2);
-}
-
-
-
-/*void _parser(char *content, char **table)
-{
-	char *lines[1024];
-	int i;
-
-	tokeniz(lines, content, "\n");
-	for (i = 0; lines[i]; i++)
-	{
-		tokeniz(table, lines[i], " ");
-	}
-
-}*/
-
+/**
+ * 
+ */
 void tokeniz(char **toks, char *L, char *d)
 {
 	char *tmp;
@@ -40,6 +19,9 @@ void tokeniz(char **toks, char *L, char *d)
 	toks[i] = NULL;
 }
 
+/**
+ * 
+ */
 int is_comment(char *line)
 {
 	/* check for comment*/
@@ -49,6 +31,10 @@ int is_comment(char *line)
 	return (0);	/* if not */
 }
 
+/**
+ *
+ *
+ */
 void cmd_list(char *input, char *lines[][3])
 {
 	char *buf[MAX_LINES];
