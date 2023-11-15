@@ -1,6 +1,6 @@
 #include "monty.h"
 
-void _launcher(void)
+void _launcher(char *lines[][3])
 {
     int i, j, line_number = 0;
 

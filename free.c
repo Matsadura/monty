@@ -8,8 +8,6 @@ void free_grid(char *lines[][3])
 	for (i = 0; lines[i][0] ; i++)
 	{
 		for (j = 0; lines[i][j]; j++)
-		{
 			free(lines[i][j]);
-		}
 	}
 }

@@ -1,5 +1,4 @@
 #include "monty.h"
-char *lines[MAX_LINES][MAX_TOKS];
 
 void _push(char *s, char *s2)
 {
@@ -50,7 +49,7 @@ int is_comment(char *line)
 	return (0);	/* if not */
 }
 
-void cmd_list(char *input)
+void cmd_list(char *input, char *lines[][3])
 {
 	char *buf[MAX_LINES];
 	char *tmp;

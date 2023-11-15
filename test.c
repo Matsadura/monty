@@ -1,7 +1,5 @@
 #include "monty.h"
 
-char *lines[MAX_LINES][MAX_TOKS];
-
 /*int main(int argc, char **argv)
 {
 	char *table[1024];
@@ -31,6 +29,7 @@ char *lines[MAX_LINES][MAX_TOKS];
 int main(int argc, char **argv)
 {
 	char *input;
+	char *lines[MAX_LINES][MAX_TOKS];
 
 	if (argc < 2 || argc > 2)
 	{
@@ -42,10 +41,10 @@ int main(int argc, char **argv)
 	input = read_textfile(argv[1], MAX_BUF);
 
 	/* tokenize the input and clean it */
-	cmd_list(input);
+	cmd_list(input, lines);
 
 	/* lunch*/
-	_launcher();
+	_launcher(lines);
 
 	free_grid(lines);
 	return (0);

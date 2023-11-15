@@ -17,7 +17,8 @@
 #define SPACE " "
 
 /* 3D array for the commands*/
-extern char *lines[MAX_LINES][MAX_TOKS];
+/*extern char *lines[MAX_LINES][MAX_TOKS];*/
+/*extern stack_t *stack;*/
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -59,7 +60,7 @@ typedef struct inst_s
         void (*f)(char *word, char *word2);
 } inst_t;
 
-void _launcher(void);
+void _launcher(char *lines[][3]);
 
 void _push(char *s, char *s2);
 void _pall(char *s, char *s2);
@@ -67,7 +68,7 @@ void _pall(char *s, char *s2);
 char *read_textfile(const char *filename, size_t letters);
 void tokeniz(char **toks, char *L, char *d);
 char *_liner(char *str);
-void cmd_list(char *input);
+void cmd_list(char *input, char *lines[][3]);
 int is_comment(char *line);
 
 void free_grid(char *grid[][3]);
