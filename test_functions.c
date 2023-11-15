@@ -41,17 +41,11 @@ void tokeniz(char **toks, char *L, char *d)
 	toks[i] = NULL;
 }
 
-int if_comment(char *line)
+int is_comment(char *line)
 {
-	int i = 0;
-	
-	/* ignore white spaces*/
-	while (line[i] == ' ')
-		i++;
-
 	/* check for comment*/
-	if (line[i] == '#')
-		return (1); /* if the line is a comment*/
+	if (line[0] == '#')
+		return (1); /* if the line is a comment */
 
 	return (0);	/* if not */
 }
@@ -62,15 +56,17 @@ void cmd_list(char *input)
 	char *tmp;
 	int i = 0;
 
+	/* in this step the input will be parsed line by line */
 	tmp = strtok(input, NEW_LINE);
 	while (tmp)
 	{
 		buf[i++] = _liner(tmp);
 		tmp = strtok(NULL, NEW_LINE);
 	}
-
 	buf[i] = NULL;
 
+	/* in this step the parsed line will parsed to tokens
+		and we'll stor them in *lines[][3] */
 	for (i = 0; buf[i]; i++)
 	{
 		tokeniz(lines[i], buf[i], SPACE);
@@ -78,6 +74,7 @@ void cmd_list(char *input)
 	}
 	lines[i][0] = NULL;
 
+	free(input); /* free the input "the content" */
 }
 
 /**

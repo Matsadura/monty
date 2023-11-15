@@ -10,11 +10,13 @@
 
 /* list of marcos */
 
+#define MAX_BUF 1024
 #define MAX_LINES 1024
-#define MAX_TOKS 3
+#define MAX_TOKS 3 /* cuz we only need two token and the 3 tok is a NULL*/
 #define NEW_LINE "\n"
 #define SPACE " "
 
+/* 3D array for the commands*/
 extern char *lines[MAX_LINES][MAX_TOKS];
 
 /**
@@ -57,14 +59,16 @@ typedef struct inst_s
         void (*f)(char *word, char *word2);
 } inst_t;
 
+void _launcher(void);
+
 void _push(char *s, char *s2);
 void _pall(char *s, char *s2);
 
 char *read_textfile(const char *filename, size_t letters);
-void _parser(char *content, char **table);
 void tokeniz(char **toks, char *L, char *d);
 char *_liner(char *str);
 void cmd_list(char *input);
+int is_comment(char *line);
 
 void free_grid(char *grid[][3]);
 #endif /* MONTY */
