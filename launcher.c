@@ -1,7 +1,7 @@
 #include "monty.h"
 
 /**
- * _launcher - executes the OPcode
+ * _launcher - searches for the OPcode
  * @lines: the parser instructions
  */
 void _launcher(char *lines[][3])
@@ -19,12 +19,11 @@ void _launcher(char *lines[][3])
 		line_number++;
 		if (is_comment(lines[i][0]) || lines[i][0][0] == '\0')
 			continue;
-		/*printf("[%d][%s] <==> ", line_number, lines[i][0]);*/
+
 		for (j = 0; j < 2; j++)
 		{
 			if (strcmp(lines[i][0], data[j].opcode) == 0)
 			{
-				/*printf("[%s]", data[j].opcode);*/
 				ret = func(data[j], lines[i], line_number);
 				if (ret != 0)
 					exit_err(ret, lines, line_number, lines[i][0]);
@@ -34,14 +33,16 @@ void _launcher(char *lines[][3])
 		if (j == 2)
 		{
 			exit_err(INSTRCT_EXIST, lines, line_number, lines[i][0]);
-			/*fprintf(stderr, "L%d: unknown instruction %s\n", line_number, lines[i][0]);
-			possible free_list
-			free_dlistint(head);
-			free_grid(lines);
-			exit(EXIT_FAILURE);*/
 		}
 	}
 }
+
+/**
+ * is_num - this function checks if str in a number or empty
+ * @Str: the string
+ *
+ * Return: return 1 if the string is a number or 0 if else
+ */
 
 int is_num(char *Str)
 {
@@ -52,7 +53,7 @@ int is_num(char *Str)
 
 	if (Str[i] == '-')
 		i++;
-	
+
 	while (Str[i])
 	{
 		if (isdigit(Str[i]) == 0)
@@ -62,6 +63,13 @@ int is_num(char *Str)
 
 	return (1);
 }
+
+/**
+ * func - executes the OPcode
+ * @data: the opcode and its function
+ * @toks: the command in tokens
+ * @line_number: the line number of the command
+ */
 
 int func(instruction_t data, char **toks, unsigned int line_number)
 {
@@ -75,11 +83,11 @@ int func(instruction_t data, char **toks, unsigned int line_number)
 			new_node = create_node(toks[1]);
 		else
 			return (1);
-		
+
 		if (new_node == NULL)
 			return (11);
 	}
-	
+
 	data.f(&new_node, line_number);
 
 	return (0);
