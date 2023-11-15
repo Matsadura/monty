@@ -7,6 +7,7 @@
 #include <limits.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <ctype.h>
 
 /* list of marcos */
 
@@ -72,5 +73,6 @@ void free_dlistint(stack_t *head);
 /*** miscellaneous ***/
 void _launcher(char *lines[][3]);
 void free_grid(char *grid[][3]);
+int isInteger(char *val);
 
 #endif /* MONTY */
