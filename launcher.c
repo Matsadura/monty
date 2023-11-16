@@ -6,7 +6,7 @@
  */
 void _launcher(char *lines[][3])
 {
-	int i, j, ret;
+	int i, j, ret, mode = STACK;
 	unsigned int line_number = 0;
 	instruction_t data[] = {
 		{"push", _push},
@@ -22,7 +22,7 @@ void _launcher(char *lines[][3])
 		{"pchar", _pchar},
 		{"pstr", _pstr},
 		{"rotl", _rotl},
-		{"rotr", _rotr}
+		{"rotr", _rotr},
 	};
 
 	for (i = 0; lines[i][0]; i++)
@@ -31,6 +31,17 @@ void _launcher(char *lines[][3])
 		if (is_comment(lines[i][0]) || !lines[i][0][0])
 			continue;
 
+		if (strcmp(lines[i][0], "queue") == 0)
+		{
+			mode = QUEUE;
+			continue;
+		}
+		if (strcmp(lines[i][0], "stack") == 0)
+		{
+			mode = STACK;
+			continue;
+		}
+
 		if (strcmp(lines[i][0], "nop") == 0)
 			continue;
 
@@ -38,7 +49,7 @@ void _launcher(char *lines[][3])
 		{
 			if (strcmp(lines[i][0], data[j].opcode) == 0)
 			{
-				ret = func(data[j], lines[i], line_number);
+				ret = func(data[j], lines[i], line_number, mode);
 				if (ret != 0)
 					exit_err(ret, lines, line_number, lines[i][0]);
 				break;
@@ -85,7 +96,7 @@ int is_num(char *Str)
  * @line_number: the line number of the command
  */
 
-int func(instruction_t data, char **toks, unsigned int line_number)
+int func(instruction_t data, char **toks, unsigned int line_number, int mode)
 {
 	stack_t *new_node;
 
@@ -143,8 +154,10 @@ int func(instruction_t data, char **toks, unsigned int line_number)
 		else if (head->n > 126 || head->n < 32)
 			return (112);
 	}
-
-	data.f(&new_node, line_number);
+	if (strcmp(data.opcode, "push") == 0 && mode == 2)
+		_push_queue(&new_node, line_number);
+	else
+		data.f(&new_node, line_number);
 
 	return (0);
 }

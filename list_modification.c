@@ -20,7 +20,6 @@ stack_t *create_node(char *str)
 	return (new_node);
 }
 
-
 /**
  * add_dnodeint - adds a new node at the
  *	beginning of a doubly linked list
@@ -77,6 +76,31 @@ size_t print_dlistint(const stack_t *h)
 	return (len);
 }
 
+stack_t *add_nodeint_queue(stack_t **stack, int n)
+{
+	stack_t *new = malloc(sizeof(stack_t));
+	stack_t *tmp = *stack;
+
+	if (new == NULL)
+		return (NULL);
+
+	new->n = n;
+	new->next = NULL;
+	new->prev = NULL;
+
+	if (*stack == NULL)
+		*stack = new;
+	else
+	{
+		while (tmp->next)
+			tmp = tmp->next;
+
+		tmp->next = new;
+		new->prev = tmp;
+	}
+
+	return (new);
+}
 
 /**
  * free_dlistint - frees a doubly linked list

@@ -68,3 +68,14 @@ void _rotr(stack_t **stack, unsigned int line_number)
 
 	head = head->prev;
 }
+
+void _push_queue(stack_t **stack, unsigned int line_number)
+{
+	stack_t *tmp = *stack;
+	stack_t *cur = head;
+	(void) line_number;
+	
+	/** head is the global variable for the stack or queue*/
+	add_nodeint_queue(&head, (*stack)->n); /**stack->n is the value of the new node*/
+	free(tmp);
+}

@@ -17,7 +17,8 @@
 #define NEW_LINE "\n"
 #define SPACE " "
 #define INSTRCT_EXIST 10 /* instruction does not exist */
-
+#define STACK 1
+#define QUEUE 2 
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -66,6 +67,7 @@ void _pchar(stack_t **stack, unsigned int line_number);
 void _pstr(stack_t **stack, unsigned int line_number);
 void _rotl(stack_t **stack, unsigned int line_number);
 void _rotr(stack_t **stack, unsigned int line_number);
+void _push_queue(stack_t **stack, unsigned int line_number);
 
 /** file I / O */
 char *read_textfile(const char *filename, size_t letters);
@@ -83,6 +85,7 @@ size_t print_dlistint(const stack_t *h);
 stack_t *add_dnodeint(stack_t **stack, int n);
 stack_t *create_node(char *str);
 void free_dlistint(stack_t *head);
+stack_t *add_nodeint_queue(stack_t **stack, int n);
 
 /*** miscellaneous ***/
 void _launcher(char *lines[][3]);
@@ -90,6 +93,6 @@ void free_grid2(char *grid[][3], int numTokens);
 void free_grid(char *lines[][3]);
 
 void exit_err(int flag, char *lines[][3], unsigned int L, char *cmd);
-int func(instruction_t data, char **toks, unsigned int line_number);
+int func(instruction_t data, char **toks, unsigned int line_number, int mode);
 
 #endif /* MONTY */
