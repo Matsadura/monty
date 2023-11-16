@@ -30,7 +30,7 @@ void _launcher(char *lines[][3])
 		if (strcmp(lines[i][0], "nop") == 0)
 			continue;
 			
-		for (j = 0; j < 9; j++)
+		for (j = 0; j < 10; j++)
 		{
 			if (strcmp(lines[i][0], data[j].opcode) == 0)
 			{
@@ -40,7 +40,7 @@ void _launcher(char *lines[][3])
 				break;
 			}
 		}
-		if (j == 9)
+		if (j == 10)
 		{
 			exit_err(INSTRCT_EXIST, lines, line_number, lines[i][0]);
 		}
