@@ -9,7 +9,7 @@ void _push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp = *stack;
 	(void) line_number;
-
+	
 	/** head is the global variable for the stack or queue*/
 	add_dnodeint(&head, (*stack)->n); /**stack->n is the value of the new node*/
 	free(tmp);

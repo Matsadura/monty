@@ -18,7 +18,7 @@
 #define SPACE " "
 #define INSTRCT_EXIST 10 /* instruction does not exist */
 #define STACK 1
-#define QUEUE 2 
+#define QUEUE 2
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -88,11 +88,11 @@ void free_dlistint(stack_t *head);
 stack_t *add_nodeint_queue(stack_t **stack, int n);
 
 /*** miscellaneous ***/
-void _launcher(char *lines[][3]);
+void _launcher(char *lines[][3], int numLines);
 void free_grid2(char *grid[][3], int numTokens);
 void free_grid(char *lines[][3]);
 
-void exit_err(int flag, char *lines[][3], unsigned int L, char *cmd);
+void exit_err(int flag, char *lines[][3], unsigned int L, char *cmd, int nL);
 int func(instruction_t data, char **toks, unsigned int line_number, int mode);
 
 #endif /* MONTY */

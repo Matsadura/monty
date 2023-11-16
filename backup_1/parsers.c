@@ -1,32 +1,13 @@
 #include "monty.h"
-/*char *lines[MAX_LINES][MAX_TOKS];*/
-
-void _push(char *s, char *s2)
-{
-	printf("OPcode :%s, argument : %s\n", s, s2);
-}
-
-void _pall(char *s, char *s2)
-{
-	printf("OPcode :%s, argument : %s\n", s, s2);
-}
 
 
-
-/*void _parser(char *content, char **table)
-  {
-  char *lines[1024];
-  int i;
-
-  tokeniz(lines, content, "\n");
-  for (i = 0; lines[i]; i++)
-  {
-  tokeniz(table, lines[i], " ");
-  }
-
-  }*/
-
-void tokeniz(char **toks, char *L, char *d)
+/**
+ * tokeniz - tokenizes an input
+ * @toks: the buffer where the result is stored
+ * @L: the line to tokenize
+ * @d: the delimiter
+ */
+int tokeniz(char **toks, char *L, char *d)
 {
 	char *tmp;
 	int i;
@@ -39,8 +20,15 @@ void tokeniz(char **toks, char *L, char *d)
 	}
 
 	toks[i] = NULL;
+	return (i);
 }
 
+/**
+ * is_comment - checks if the instuction is a
+ *	comment
+ * @line: the parsed line
+ * Return: 1 if it's a comment, 0 otherwise
+ */
 int is_comment(char *line)
 {
 	/* check for comment*/
@@ -50,11 +38,17 @@ int is_comment(char *line)
 	return (0);	/* if not */
 }
 
-void cmd_list(char *input)
+/**
+ * cmd_list - parses the input into a list
+ *	of commands
+ * @input: the input to parse
+ * @lines: the buffer to where to store the rslt
+ */
+int cmd_list(char *input, char *lines[][3])
 {
-	char *buf[MAX_LINES];
+	char *buf[MAX_LINES] = NULL;
 	char *tmp;
-	int i = 0;
+	int i = 0, numTokens = 0;
 
 	/* in this step the input will be parsed line by line */
 	tmp = strtok(input, NEW_LINE);
@@ -65,16 +59,18 @@ void cmd_list(char *input)
 	}
 	buf[i] = NULL;
 
-	/* in this step the parsed line will parsed to tokens
-	   and we'll stor them in *lines[][3] */
+	/* in this step the parsed line will parsed to tokens */
+	/*  and we'll stor them in *lines[][3] */
 	for (i = 0; buf[i]; i++)
 	{
 		tokeniz(lines[i], buf[i], SPACE);
 		free(buf[i]);
+		numTokens++;
 	}
 	lines[i][0] = NULL;
 
 	free(input); /* free the input "the content" */
+	return (numTokens);
 }
 
 /**

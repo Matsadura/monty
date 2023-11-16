@@ -11,9 +11,9 @@ stack_t *head = NULL;
 
 int main(int argc, char **argv)
 {
-	/*char *input;*/
+	char *input;
 	char *lines[MAX_LINES][MAX_TOKS];
-	int numLines = 0;
+	int numTokens = 0;
 
 	if (argc < 2 || argc > 2)
 	{
@@ -22,15 +22,15 @@ int main(int argc, char **argv)
 	}
 
 	/* i put this here cuz it needs to be freed "cmd_list" */
-	/*input = read_textfile(argv[1], MAX_BUF);*/
+	input = read_textfile(argv[1], MAX_BUF);
 
 	/* tokenize the input and clean it */
-	numLines = cmd_list(argv[1], lines);
+	numTokens = cmd_list(input, lines);
 
 	/* lunch*/
-	_launcher(lines, numLines);
+	_launcher(lines);
 
-	free_grid2(lines, numLines);
+	free_grid2(lines, numTokens);
 	free_dlistint(head);
 	return (0);
 }

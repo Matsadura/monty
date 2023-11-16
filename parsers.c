@@ -10,7 +10,7 @@
 int tokeniz(char **toks, char *L, char *d)
 {
 	char *tmp;
-	int i;
+	int i = 0;
 
 	tmp = strtok(L, d);
 	for (i = 0; tmp && i < 2; i++)
@@ -46,32 +46,25 @@ int is_comment(char *line)
  */
 int cmd_list(char *input, char *lines[][3])
 {
-	char *buf[MAX_LINES];
-	char *tmp;
-	int i = 0, numTokens = 0;
-
-	/* in this step the input will be parsed line by line */
-	tmp = strtok(input, NEW_LINE);
-	while (tmp)
+	/*char *buf[MAX_LINES];*/
+	FILE *fd;
+	char *buf = NULL;
+	int i = 0, j = 0, num_lines = 0;
+	size_t len;
+	fd = fopen(input, "r");
+	if (fd == NULL) /** fprint error */
 	{
-		buf[i] = strdup(tmp);
-		tmp = strtok(NULL, NEW_LINE);
-		i++;
+		fprintf(stderr, "Error: Can't open file %s\n", input);
+		exit(EXIT_FAILURE); /*exit failure*/
 	}
-	buf[i] = NULL;
 
-	/* in this step the parsed line will parsed to tokens */
-	/*  and we'll stor them in *lines[][3] */
-	for (i = 0; buf[i]; i++)
-	{
-		tokeniz(lines[i], buf[i], SPACE);
-		free(buf[i]);
-		numTokens++;
-	}
-	lines[i][0] = NULL;
+	for (num_lines = 1; getline(&buf, &len, fd) != -1; num_lines++)
+		tokeniz(lines[i++], buf, "\n ");
+	lines[num_lines][0] = NULL;
 
-	free(input); /* free the input "the content" */
-	return (numTokens);
+	free(buf);
+	fclose(fd);
+	return (num_lines - 1);
 }
 
 /**

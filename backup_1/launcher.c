@@ -4,7 +4,7 @@
  * _launcher - searches for the OPcode
  * @lines: the parser instructions
  */
-void _launcher(char *lines[][3], int numLines)
+void _launcher(char *lines[][3])
 {
 	int i, j, ret, mode = STACK;
 	unsigned int line_number = 0;
@@ -22,16 +22,15 @@ void _launcher(char *lines[][3], int numLines)
 		{"pchar", _pchar},
 		{"pstr", _pstr},
 		{"rotl", _rotl},
-		{"rotr", _rotr}
+		{"rotr", _rotr},
 	};
 
-	for (i = 0; i < numLines; i++)
+	for (i = 0; lines[i][0]; i++)
 	{
 		line_number++;
-		if (!lines[i][0])
+		if (is_comment(lines[i][0]) || !lines[i][0][0])
 			continue;
-		if (is_comment(lines[i][0]))
-			continue;
+
 		if (strcmp(lines[i][0], "queue") == 0)
 		{
 			mode = QUEUE;
@@ -52,13 +51,13 @@ void _launcher(char *lines[][3], int numLines)
 			{
 				ret = func(data[j], lines[i], line_number, mode);
 				if (ret != 0)
-					exit_err(ret, lines, line_number, lines[i][0], numLines);
+					exit_err(ret, lines, line_number, lines[i][0]);
 				break;
 			}
 		}
 		if (j == 14)
 		{
-			exit_err(INSTRCT_EXIST, lines, line_number, lines[i][0], numLines);
+			exit_err(INSTRCT_EXIST, lines, line_number, lines[i][0]);
 		}
 	}
 }

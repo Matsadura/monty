@@ -1,6 +1,6 @@
 #include "monty.h"
 
-void exit_err(int flag, char *lines[][3], unsigned int L, char *cmd, int nL)
+void exit_err(int flag, char *lines[][3], unsigned int L, char *cmd)
 {
 	if (flag == 1)
 		fprintf(stderr, "L%d: usage: push integer\n", L);
@@ -36,6 +36,6 @@ void exit_err(int flag, char *lines[][3], unsigned int L, char *cmd, int nL)
 
 	if (head != NULL)
 		free_dlistint(head);
-	free_grid2(lines, nL);
+	free_grid(lines);
 	exit(EXIT_FAILURE);
 }
