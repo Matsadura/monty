@@ -7,7 +7,7 @@
  * @L: the line to tokenize
  * @d: the delimiter
  */
-void tokeniz(char **toks, char *L, char *d)
+int tokeniz(char **toks, char *L, char *d)
 {
 	char *tmp;
 	int i;
@@ -20,6 +20,7 @@ void tokeniz(char **toks, char *L, char *d)
 	}
 
 	toks[i] = NULL;
+	return (i);
 }
 
 /**
@@ -43,11 +44,11 @@ int is_comment(char *line)
  * @input: the input to parse
  * @lines: the buffer to where to store the rslt
  */
-void cmd_list(char *input, char *lines[][3])
+int cmd_list(char *input, char *lines[][3])
 {
 	char *buf[MAX_LINES];
 	char *tmp;
-	int i = 0;
+	int i = 0, numTokens = 0;
 
 	/* in this step the input will be parsed line by line */
 	tmp = strtok(input, NEW_LINE);
@@ -64,10 +65,12 @@ void cmd_list(char *input, char *lines[][3])
 	{
 		tokeniz(lines[i], buf[i], SPACE);
 		free(buf[i]);
+		numTokens++;
 	}
 	lines[i][0] = NULL;
 
 	free(input); /* free the input "the content" */
+	return (numTokens);
 }
 
 /**

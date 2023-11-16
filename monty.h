@@ -67,9 +67,9 @@ void _mod(stack_t **stack, unsigned int line_number);
 char *read_textfile(const char *filename, size_t letters);
 
 /*** parser ***/
-void tokeniz(char **toks, char *L, char *d);
+int tokeniz(char **toks, char *L, char *d);
 char *_liner(char *str);
-void cmd_list(char *input, char *lines[][3]);
+int cmd_list(char *input, char *lines[][3]);
 int is_comment(char *line);
 int is_num(char *Str);
 
@@ -82,7 +82,8 @@ void free_dlistint(stack_t *head);
 
 /*** miscellaneous ***/
 void _launcher(char *lines[][3]);
-void free_grid(char *grid[][3]);
+void free_grid2(char *grid[][3], int numTokens);
+void free_grid(char *lines[][3]);
 
 void exit_err(int flag, char *lines[][3], unsigned int L, char *cmd);
 int func(instruction_t data, char **toks, unsigned int line_number);
