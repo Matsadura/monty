@@ -137,7 +137,7 @@ int func(instruction_t data, char **toks, unsigned int line_number)
 	{
 		if (head == NULL)
 			return (111);
-		else if (head->n > 126 || head->n < 32)		
+		else if (head->n > 127 || head->n < 0)		
 			return (112);
 	}
 
