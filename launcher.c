@@ -18,7 +18,8 @@ void _launcher(char *lines[][3])
 		{"sub", _sub},
 		{"div", _div},
 		{"mul", _mul},
-		{"mod", _mod}
+		{"mod", _mod},
+		{"pchar", _pchar}
 	};
 
 	for (i = 0; lines[i][0]; i++)
@@ -30,7 +31,7 @@ void _launcher(char *lines[][3])
 		if (strcmp(lines[i][0], "nop") == 0)
 			continue;
 			
-		for (j = 0; j < 10; j++)
+		for (j = 0; j < 11; j++)
 		{
 			if (strcmp(lines[i][0], data[j].opcode) == 0)
 			{
@@ -40,7 +41,7 @@ void _launcher(char *lines[][3])
 				break;
 			}
 		}
-		if (j == 10)
+		if (j == 11)
 		{
 			exit_err(INSTRCT_EXIST, lines, line_number, lines[i][0]);
 		}
@@ -131,6 +132,13 @@ int func(instruction_t data, char **toks, unsigned int line_number)
 			return (101);
 		else if (head->n == 0)
 			return (102);
+	}
+	else if (strcmp(data.opcode, "pchar") == 0)
+	{
+		if (head == NULL)
+			return (111);
+		else if (head->n > 126 || head->n < 32)		
+			return (112);
 	}
 
 	data.f(&new_node, line_number);
