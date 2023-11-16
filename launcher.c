@@ -20,7 +20,9 @@ void _launcher(char *lines[][3])
 		{"mul", _mul},
 		{"mod", _mod},
 		{"pchar", _pchar},
-		{"pstr", _pstr}
+		{"pstr", _pstr},
+		{"rotl", _rotl},
+		{"rotr", _rotr}
 	};
 
 	for (i = 0; lines[i][0]; i++)
@@ -28,11 +30,11 @@ void _launcher(char *lines[][3])
 		line_number++;
 		if (is_comment(lines[i][0]) || !lines[i][0][0])
 			continue;
-		
+
 		if (strcmp(lines[i][0], "nop") == 0)
 			continue;
-			
-		for (j = 0; j < 12; j++)
+
+		for (j = 0; j < 14; j++)
 		{
 			if (strcmp(lines[i][0], data[j].opcode) == 0)
 			{
@@ -42,7 +44,7 @@ void _launcher(char *lines[][3])
 				break;
 			}
 		}
-		if (j == 12)
+		if (j == 14)
 		{
 			exit_err(INSTRCT_EXIST, lines, line_number, lines[i][0]);
 		}
@@ -97,9 +99,9 @@ int func(instruction_t data, char **toks, unsigned int line_number)
 			return (11);
 	}
 	else if (strcmp(data.opcode, "pint") == 0 && head == NULL)
-			return (3);
+		return (3);
 	else if (strcmp(data.opcode, "pop") == 0 && head == NULL)
-			return (4);
+		return (4);
 	else if (strcmp(data.opcode, "swap") == 0)
 	{
 		if (head == NULL || head->next == NULL)
@@ -138,7 +140,7 @@ int func(instruction_t data, char **toks, unsigned int line_number)
 	{
 		if (head == NULL)
 			return (111);
-		else if (head->n > 126 || head->n < 32)		
+		else if (head->n > 126 || head->n < 32)
 			return (112);
 	}
 

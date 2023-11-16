@@ -54,8 +54,9 @@ int cmd_list(char *input, char *lines[][3])
 	tmp = strtok(input, NEW_LINE);
 	while (tmp)
 	{
-		buf[i++] = _liner(tmp);
+		buf[i] = strdup(tmp);
 		tmp = strtok(NULL, NEW_LINE);
+		i++;
 	}
 	buf[i] = NULL;
 

@@ -26,7 +26,7 @@ void _pall(stack_t **stack, unsigned int line_number)
 	(void) line_number;
 
 	/*if (head != NULL)*/
-		print_dlistint(head); /** head is the stack or queue*/
+	print_dlistint(head); /** head is the stack or queue*/
 }
 
 void _pint(stack_t **stack, unsigned int line_number)
