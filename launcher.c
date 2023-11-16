@@ -1,9 +1,13 @@
 #include "monty.h"
 
+void T(void);
+
 /**
  * _launcher - searches for the OPcode
  * @lines: the parser instructions
+ * @numLines: the number of lines
  */
+
 void _launcher(char *lines[][3], int numLines)
 {
 	int i, j, ret, mode = STACK;
@@ -95,6 +99,10 @@ int is_num(char *Str)
  * @data: the opcode and its function
  * @toks: the command in tokens
  * @line_number: the line number of the command
+ * @mode: the mode of opcode stack / queue
+ *
+ * Return: 0 if the command executes with no errors
+ *	else return an int that refers to an error
  */
 
 int func(instruction_t data, char **toks, unsigned int line_number, int mode)
