@@ -5,6 +5,7 @@
  * @stack: the node
  * @line_number: the line number of the instruction
  */
+
 void _push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp = *stack;
@@ -20,6 +21,7 @@ void _push(stack_t **stack, unsigned int line_number)
  * @stack: the node
  * @line_number: the line number of the instruction
  */
+
 void _pall(stack_t **stack, unsigned int line_number)
 {
 	(void) stack; /**stack is not used in this function **/
@@ -29,6 +31,12 @@ void _pall(stack_t **stack, unsigned int line_number)
 	print_dlistint(head); /** head is the stack or queue*/
 }
 
+/**
+ * _pint -  prints the value at the top of the stack, followed by a new line
+ * @stack: the node
+ * @line_number: the line number of the instruction
+ */
+
 void _pint(stack_t **stack, unsigned int line_number)
 {
 	(void) stack; /**stack is not used in this function **/
@@ -36,6 +44,12 @@ void _pint(stack_t **stack, unsigned int line_number)
 
 	printf("%d\n", head->n);
 }
+
+/**
+ * _pop - removes the top element of the stack
+ * @stack: the node
+ * @line_number: the line number of the instruction
+ */
 
 void _pop(stack_t **stack, unsigned int line_number)
 {
@@ -47,6 +61,12 @@ void _pop(stack_t **stack, unsigned int line_number)
 	head = head->next;
 	free(tmp);
 }
+
+/**
+ * _swap -  swaps the top two elements of the stack
+ * @stack: the node
+ * @line_number: the line number of the instruction
+ */
 
 void _swap(stack_t **stack, unsigned int line_number)
 {
