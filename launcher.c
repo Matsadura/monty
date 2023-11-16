@@ -17,7 +17,8 @@ void _launcher(char *lines[][3])
 		{"add", _add},
 		{"sub", _sub},
 		{"div", _div},
-		{"mul", _mul}
+		{"mul", _mul},
+		{"mod", _mod}
 	};
 
 	for (i = 0; lines[i][0]; i++)
@@ -123,6 +124,13 @@ int func(instruction_t data, char **toks, unsigned int line_number)
 	{
 		if (head == NULL || head->next == NULL)
 			return (9);
+	}
+	else if (strcmp(data.opcode, "mod") == 0)
+	{
+		if (head == NULL || head->next == NULL)
+			return (101);
+		else if (head->n == 0)
+			return (102);
 	}
 
 	data.f(&new_node, line_number);
