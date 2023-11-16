@@ -19,7 +19,8 @@ void _launcher(char *lines[][3])
 		{"div", _div},
 		{"mul", _mul},
 		{"mod", _mod},
-		{"pchar", _pchar}
+		{"pchar", _pchar},
+		{"pstr", _pstr}
 	};
 
 	for (i = 0; lines[i][0]; i++)
@@ -31,7 +32,7 @@ void _launcher(char *lines[][3])
 		if (strcmp(lines[i][0], "nop") == 0)
 			continue;
 			
-		for (j = 0; j < 11; j++)
+		for (j = 0; j < 12; j++)
 		{
 			if (strcmp(lines[i][0], data[j].opcode) == 0)
 			{
@@ -41,7 +42,7 @@ void _launcher(char *lines[][3])
 				break;
 			}
 		}
-		if (j == 11)
+		if (j == 12)
 		{
 			exit_err(INSTRCT_EXIST, lines, line_number, lines[i][0]);
 		}
