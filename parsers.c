@@ -1,12 +1,14 @@
 #include "monty.h"
 
-
 /**
  * tokeniz - tokenizes an input
  * @toks: the buffer where the result is stored
  * @L: the line to tokenize
  * @d: the delimiter
+ *
+ * Return: return the number of tokens
  */
+
 int tokeniz(char **toks, char *L, char *d)
 {
 	char *tmp;
@@ -29,6 +31,7 @@ int tokeniz(char **toks, char *L, char *d)
  * @line: the parsed line
  * Return: 1 if it's a comment, 0 otherwise
  */
+
 int is_comment(char *line)
 {
 	/* check for comment*/
@@ -43,7 +46,10 @@ int is_comment(char *line)
  *	of commands
  * @input: the input to parse
  * @lines: the buffer to where to store the rslt
+ *
+ * Return: return the number of lines
  */
+
 int cmd_list(char *input, char *lines[][3])
 {
 	/*char *buf[MAX_LINES];*/
@@ -51,6 +57,7 @@ int cmd_list(char *input, char *lines[][3])
 	char *buf = NULL;
 	int i = 0, num_lines = 0;
 	size_t len;
+
 	fd = fopen(input, "r");
 	if (fd == NULL) /** fprint error */
 	{

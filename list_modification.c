@@ -76,6 +76,14 @@ size_t print_dlistint(const stack_t *h)
 	return (len);
 }
 
+/**
+ * add_nodeint_queue - adds a new node at the end of linked list
+ * @stack: the head of the list
+ * @n: the value of the node
+ * Return: the address of the new element
+ *	or NULL if it failed
+ */
+
 stack_t *add_nodeint_queue(stack_t **stack, int n)
 {
 	stack_t *new = malloc(sizeof(stack_t));
