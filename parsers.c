@@ -49,7 +49,7 @@ int cmd_list(char *input, char *lines[][3])
 	/*char *buf[MAX_LINES];*/
 	FILE *fd;
 	char *buf = NULL;
-	int i = 0, j = 0, num_lines = 0;
+	int i = 0, num_lines = 0;
 	size_t len;
 	fd = fopen(input, "r");
 	if (fd == NULL) /** fprint error */
