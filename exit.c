@@ -1,5 +1,14 @@
 #include "monty.h"
 
+/**
+ * exit_err - this function handles the exit and error messages
+ * @flag: a returned int that refers to an error msg
+ * @lines: a Table of commands
+ * @L: line number
+ * @cmd: the command push, pall, ...
+ * @nL: the number of lines
+ */
+
 void exit_err(int flag, char *lines[][3], unsigned int L, char *cmd, int nL)
 {
 	if (flag == 1)
