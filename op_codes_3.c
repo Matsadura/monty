@@ -1,5 +1,10 @@
 #include "monty.h"
 
+/**
+ * _pchar - print the char at the top of the stack
+ * @stack: the node / head
+ * @line_number: the line number
+ */
 
 void _pchar(stack_t **stack, unsigned int line_number)
 {
@@ -9,6 +14,13 @@ void _pchar(stack_t **stack, unsigned int line_number)
 	putchar(head->n);
 	putchar('\n');
 }
+
+/**
+ * _pstr - prints the string starting at the top
+ *	of the stack, followed by a new line
+ * @stack: the node / head
+ * @line_number: the line number
+ */
 
 void _pstr(stack_t **stack, unsigned int line_number)
 {
@@ -23,6 +35,12 @@ void _pstr(stack_t **stack, unsigned int line_number)
 	}
 	putchar('\n');
 }
+
+/**
+ * _rotl - rotates the stack to the top
+ * @stack: the node / head
+ * @line_number: the line number
+ */
 
 void _rotl(stack_t **stack, unsigned int line_number)
 {
@@ -44,6 +62,12 @@ void _rotl(stack_t **stack, unsigned int line_number)
 	tmp->next = NULL;
 	tmp->prev = current;
 }
+
+/**
+ * _rotr - rotates the stack to the bottom
+ * @stack: the node / head
+ * @line_number: the line number
+ */
 
 void _rotr(stack_t **stack, unsigned int line_number)
 {
@@ -69,12 +93,18 @@ void _rotr(stack_t **stack, unsigned int line_number)
 	head = head->prev;
 }
 
+/**
+ * _push_queue - adds a node to the queue
+ * @stack: the node / head
+ * @line_number: the line number
+ */
+
 void _push_queue(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp = *stack;
 	(void) line_number;
 
 	/** head is the global variable for the stack or queue*/
-	add_nodeint_queue(&head, (*stack)->n); /**stack->n is the value of the new node*/
+	add_nodeint_queue(&head, (*stack)->n);
 	free(tmp);
 }
