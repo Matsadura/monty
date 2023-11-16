@@ -16,7 +16,7 @@ void _pstr(stack_t **stack, unsigned int line_number)
     (void) stack; /**stack is not used in this function **/
 	(void) line_number;
     
-    while (tmp && tmp->n != 0)
+    while (tmp && tmp->n != 0 && (tmp->n < 126 && tmp->n > 32))
     {
         putchar(tmp->n);
         tmp = tmp->next;
