@@ -72,7 +72,6 @@ void _rotr(stack_t **stack, unsigned int line_number)
 void _push_queue(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp = *stack;
-	stack_t *cur = head;
 	(void) line_number;
 	
 	/** head is the global variable for the stack or queue*/

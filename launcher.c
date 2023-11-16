@@ -154,7 +154,7 @@ int func(instruction_t data, char **toks, unsigned int line_number, int mode)
 		else if (head->n > 126 || head->n < 32)
 			return (112);
 	}
-	if (strcmp(data.opcode, "push") == 0 && mode == 2)
+	if (strcmp(data.opcode, "push") == 0 && mode == QUEUE)
 		_push_queue(&new_node, line_number);
 	else
 		data.f(&new_node, line_number);
