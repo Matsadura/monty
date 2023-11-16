@@ -7,4 +7,5 @@ void _pchar(stack_t **stack, unsigned int line_number)
 	(void) line_number;
 
     putchar(head->n);
+    putchar('\n');
 }
