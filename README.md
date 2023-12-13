@@ -13,11 +13,11 @@ By completing this project, we gained knowledge and understanding of the followi
 - **Global Variables:** The proper way to use global variables.
 
 ### Programming Skills
-- **C Programming:** Implement functionalities in the C programming language.
-- **Header Files:** Organize your code with header files, including prototypes for functions.
-- **Coding Style:** Follow the Betty style guidelines for clean and readable code.
-- **Memory Management:** Utilize malloc and free for dynamic memory allocation.
-- **GitHub Usage:** Manage your code in a GitHub repository, ensuring compliance with project rules.
+- **C Programming:** Implementing functionalities in the C programming language.
+- **Header Files:** Organizing the code with header files, including prototypes for functions.
+- **Coding Style:** Following the Betty style guidelines for clean and readable code.
+- **Memory Management:** Utilizing malloc and free for dynamic memory allocation.
+- **GitHub Usage:** Managing the code in a GitHub repository, ensuring compliance with project rules.
 
 ## Project Structure
 The project consists of multiple tasks, each involving the implementation of specific Monty ByteCode opcodes. The tasks are as follows:
